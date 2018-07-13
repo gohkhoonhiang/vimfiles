@@ -1,0 +1,8 @@
+.netrwhist
+.swp
+bundle
+installed_plugins
+venv2
+venv3
+vim-plug
+init.vim
