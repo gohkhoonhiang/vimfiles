@@ -24,10 +24,10 @@ if [ ! -e "init.vim" ]; then
 fi
 
 pushd $HOME
-if [ ! -e ".vim" ]
+if [ ! -e ".vim" ]; then
     ln -s ~/.vimfiles .vim
 fi
-if [ ! -e ".vimrc" ]
+if [ ! -e ".vimrc" ]; then
     ln -s ~/.vimfiles/.vimrc .vimrc
 fi
 popd
