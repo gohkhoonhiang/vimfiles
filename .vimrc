@@ -2,6 +2,11 @@ let $vim_home=expand('~/.vimfiles')
 
 syntax on
 
+set nocompatible
+filetype off
+let &runtimepath.=',~/.vim/bundle/neoterm'
+filetype plugin on
+
 set softtabstop=4
 set tabstop=4
 set shiftwidth=4
@@ -20,6 +25,8 @@ vnoremap > >gv
 call plug#begin("~/.vimfiles/installed_plugins")
 "" directory navigator
 Plug 'scrooloose/nerdtree'
+"" nerdtree git support
+Plug 'Xuyuanp/nerdtree-git-plugin'
 "" file search
 Plug 'ctrlpvim/ctrlp.vim'
 "" content search
@@ -38,10 +45,13 @@ Plug 'briancollins/vim-jst'
 Plug 'hlissner/vim-forrestgump'
 "" execute rspec inline
 Plug 'skwp/vim-rspec'
+Plug 'janko-m/vim-test'
 "" vue.js
 Plug 'posva/vim-vue'
 "" Git wrapper
 Plug 'tpope/vim-fugitive'
+"" neoterm
+Plug 'kassio/neoterm'
 "" autocomplete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -50,6 +60,8 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+"" linter
+Plug 'w0rp/ale'
 call plug#end()
 
 "" generic config
@@ -79,6 +91,18 @@ endif
 "" nerdtree config
 nmap <leader>f :NERDTreeToggle<CR>
 let g:NERDTreeWinPos="left"
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 "" fugitive config
 nmap <leader>gb :Gblame<CR>
@@ -91,6 +115,15 @@ nmap <leader>ce :CtrlPClearAllCache<CR>:edit!<CR>
 
 "" rspec config
 nmap <leader>t :RunSpec<CR>
+nmap <leader>tf :TestFile -strategy=neovim<CR>
+
+"" ctags config
+nmap <leader>tgr :!ctags --exclude=node_modules --exclude=public --exclude=vendor -R . $(bundle list --paths) <CR>
+
+"" misc config
+nmap <leader>e :tabedit<CR>
+nmap <leader>hs :split<CR>
+nmap <leader>vs :vsplit<CR>
 
 "" color scheme
 colorscheme jellybeans
