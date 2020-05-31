@@ -80,8 +80,17 @@ if executable('ag')
 endif
 
 "" autocomplete config
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#num_processes = 1
+if has('nvim') != 0
+    " :help deoplete-options
+    let g:deoplete#enable_at_startup = 1
+    call deoplete#custom#option('auto_complete_delay', 50)
+    call deoplete#custom#option('max_list', 15)
+	call deoplete#custom#option('smart_case', v:true)
+
+    let g:python_host_prog=$vim_home."/venv2/bin/python"
+    let g:python3_host_prog=$vim_home."/venv3/bin/python"
+endif
+
 let g:python_host_prog=$vim_home."/venv2/bin/python"
 let g:python3_host_prog=$vim_home."/venv3/bin/python"
 
