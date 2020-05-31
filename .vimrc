@@ -60,6 +60,8 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+"" bundler
+Plug 'tpope/vim-bundler'
 "" linter
 Plug 'w0rp/ale'
 call plug#end()
@@ -112,6 +114,20 @@ nmap <leader>gd :Gdiff
 "" CtrlP config
 nmap <leader>c :CtrlPClearAllCache<CR>
 nmap <leader>ce :CtrlPClearAllCache<CR>:edit!<CR>
+set wildignore+=*.swp " ignore swp files
+set wildignore+=*.zip,*.jar,*.tar " ignore archive file types
+set wildignore+=venv,venv3,__pycache__,*.pyc " ignore python virtual env and compiled
+set wildignore+=node_modules " ignore npm
+set wildignore+=*.class " ignore java classes
+" nmap :CtrlPClearCache
+let g:ctrlp_switch_buffer=""
+
+if executable('ag')
+" Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+nnoremap <leader>p :CtrlP<CR>
 
 "" rspec config
 nmap <leader>t :RunSpec<CR>
@@ -135,3 +151,7 @@ au BufRead *.thor :set syntax=ruby
 "" set syntax highlight for vue
 autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
+
+"" set syntax highlight for env files
+autocmd FileType sh syntax sync fromstart
+autocmd BufRead,BufNewFile .env* setlocal filetype=sh
