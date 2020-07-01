@@ -149,6 +149,7 @@ nmap <leader>tgr :!ctags --exclude=node_modules --exclude=public --exclude=vendo
 nmap <leader>e :tabedit<CR>
 nmap <leader>hs :split<CR>
 nmap <leader>vs :vsplit<CR>
+nmap <leader>pj :%!python -m json.tool<CR>
 
 "" color scheme
 colorscheme jellybeans
