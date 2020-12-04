@@ -23,7 +23,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 call plug#begin("~/.vimfiles/installed_plugins")
-"" directory navigator
+" directory navigator
 Plug 'scrooloose/nerdtree'
 "" nerdtree git support
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -78,6 +78,26 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+nmap <leader>c :CtrlPClearAllCache<CR>
+nmap <leader>ce :CtrlPClearAllCache<CR>:edit!<CR>
+set wildignore+=*.swp " ignore swp files
+set wildignore+=*.zip,*.jar,*.tar " ignore archive file types
+set wildignore+=venv,venv3,__pycache__,*.pyc " ignore python virtual env and compiled
+set wildignore+=node_modules " ignore npm
+set wildignore+=*.class " ignore java classes
+set wildignore+=tmp " ignore tmp folder
+set wildignore+=vendor " ignore vendor folder
+set wildignore+=public " ignore public assets folder
+set wildignore+=log " ignorelog folder
+" nmap :CtrlPClearCache
+let g:ctrlp_switch_buffer=""
+
+if executable('ag')
+" Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+nnoremap <leader>p :CtrlP<CR>
 
 "" autocomplete config
 if has('nvim') != 0
@@ -119,24 +139,6 @@ let g:NERDTreeIndicatorMapCustom = {
 nmap <leader>gb :Gblame<CR>
 nmap <leader>gdm :Gdiff master<CR>
 nmap <leader>gd :Gdiff
-
-"" CtrlP config
-nmap <leader>c :CtrlPClearAllCache<CR>
-nmap <leader>ce :CtrlPClearAllCache<CR>:edit!<CR>
-set wildignore+=*.swp " ignore swp files
-set wildignore+=*.zip,*.jar,*.tar " ignore archive file types
-set wildignore+=venv,venv3,__pycache__,*.pyc " ignore python virtual env and compiled
-set wildignore+=node_modules " ignore npm
-set wildignore+=*.class " ignore java classes
-" nmap :CtrlPClearCache
-let g:ctrlp_switch_buffer=""
-
-if executable('ag')
-" Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-nnoremap <leader>p :CtrlP<CR>
 
 "" rspec config
 nmap <leader>t :RunSpec<CR>
