@@ -122,7 +122,7 @@ endif
 "" nerdtree config
 nmap <leader>f :NERDTreeToggle<CR>
 let g:NERDTreeWinPos="left"
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
