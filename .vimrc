@@ -73,11 +73,6 @@ nmap <leader>w :w<CR>
 "" ctrlp config
 let g:ctrlp_show_hidden=1
 let g:ctrlp_max_height=35
-if executable('ag')
-" Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
 nmap <leader>c :CtrlPClearAllCache<CR>
 nmap <leader>ce :CtrlPClearAllCache<CR>:edit!<CR>
 set wildignore+=*.swp " ignore swp files
@@ -95,7 +90,7 @@ let g:ctrlp_switch_buffer=""
 if executable('ag')
 " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore ''*node_modules*'''
 endif
 nnoremap <leader>p :CtrlP<CR>
 
